@@ -16,6 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let controllerModels: [(UIColor, String)] = [
+            (.redColor(), "1. Red"),
+            (.blueColor(), "2. Blue"),
+            (.purpleColor(), "3. Purple")
+        ]
+        let controllers: [UIViewController] = controllerModels.map { model in
+            let controller = UIViewController()
+            controller.view.backgroundColor = model.0
+            controller.title = model.1
+            return controller
+        }
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = PagedTabViewController(viewControllers: controllers)
+        self.window?.makeKeyAndVisible()
         return true
     }
 
